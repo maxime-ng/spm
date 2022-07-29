@@ -1,0 +1,36 @@
+<div class="body">
+  <div class="login">
+    <mat-spinner diameter="80" class="spinner" *ngIf="loading"></mat-spinner>
+
+    <div fxLayoutAlign="center center" fxFlexFill class="maindiv">
+      <mat-card fxFlex="100" *ngIf="!loading">
+        <mat-toolbar color="primary"> SLI Model </mat-toolbar>
+        <form fxLayoutAlign="stretch" fxLayout="column" [formGroup]="form" (ngSubmit)="connexion()">
+          <mat-form-field class="log">
+            <input
+              matInput
+              required
+              autocomplete="off"
+              placeholder="Email"
+              formControlName="user" />
+          </mat-form-field>
+
+          <mat-form-field class="log">
+            <input
+              matInput
+              type="password"
+              required
+              minlength="8"
+              placeholder="Mot de Passe"
+              formControlName="password" />
+          </mat-form-field>
+
+          <button mat-raised-button type="submit" color="primary" [disabled]="form.invalid">
+            Se Connecter
+          </button>
+        </form>
+      </mat-card>
+      <!-- il etias plutot content sur le coup mais bon -->
+    </div>
+  </div>
+</div>
