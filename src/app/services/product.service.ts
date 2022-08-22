@@ -3,6 +3,9 @@ import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { environment } from "src/environments/environment";
+import { Product } from "../models/product";
+import { TreeNode } from 'primeng/api';
+
 
 @Injectable({
   providedIn: "root",
@@ -16,19 +19,34 @@ export class ProductService {
     // return this.httpClient.get(this.apiURL + "products", {
     //   headers: new HttpHeaders({ "Origin": "*" }),
     // });
-
     let headers = new HttpHeaders();
     // headers = headers.set("Content-Type", "application/json");
     // headers.set("Origin", "*");
     headers = headers.set("Access-Control-Allow-Origin", "*");
 
     return this.httpClient.get<any>(
-    this.apiURL + "products"
-    // , { headers: headers }
-    
-   );
-
+      this.apiURL + "products/selectall"
+      // , { headers: headers }
+    );
     // .pipe(catchError(this.errorHandler));
+  }
+
+  save(name: String, productidentifier: String): Observable<any>{
+    let headers = new HttpHeaders();
+    headers = headers.set("Access-Control-Allow-Origin", "*");
+    return this.httpClient.get<any>(this.apiURL+"products/insert?identifier="+productidentifier+"&name="+name);
+  }
+
+  delete(id : Uint8Array[]): Observable<any>{
+    let headers = new HttpHeaders();
+    headers = headers.set("Access-Control-Allow-Origin", "*");
+    return this.httpClient.get<any>(this.apiURL+"products/delete?productIdList="+id);
+  }
+
+  update(id: Uint8Array, productidentifier: String, name: String): Observable<any>{
+    let headers = new HttpHeaders();
+    headers = headers.set("Access-Control-Allow-Origin", "*");
+    return this.httpClient.get<any>(this.apiURL+"products/update?id="+id+"&identifier="+productidentifier+"&name="+name);
   }
 
   errorHandler(error: any) {
@@ -40,4 +58,23 @@ export class ProductService {
     }
     return throwError(errorMessage);
   }
+
+  getProductwithvariant(){
+      return this.httpClient.get<any>('assets/products-variant.json')
+      .toPromise()
+      .then(res => <Product[]>res.data)
+      .then(data => { return data; });
+  }
+
+  getFilesystem() {
+    return this.httpClient.get<any>('assets/filesystem.json')
+      .toPromise()
+      .then(res => <TreeNode[]>res.data);
+    }
+
+    getLazyFilesystem() {
+    return this.httpClient.get<any>('assets/filesystem-lazy.json')
+      .toPromise()
+      .then(res => <TreeNode[]>res.data);
+    }
 }

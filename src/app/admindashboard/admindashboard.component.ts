@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { TranslateService } from "@ngx-translate/core";
 
 export interface PeriodicElement {
   name: string;
@@ -32,8 +33,22 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class AdmindashboardComponent implements OnInit {
   displayedColumns: string[] = ["position", "name", "weight", "symbol"];
   dataSource = ELEMENT_DATA;
+  language = 'en';
+  
 
-  constructor() {}
+  constructor(private translate: TranslateService) {
+    translate.setDefaultLang(this.language);
+  }
 
   ngOnInit(): void {}
+
+  changelanguage(): void{
+    if(this.language === 'en'){
+      this.language = 'fr';
+    }else{
+      this.language = 'en';
+    }
+    this.translate.use(this.language);
+
+  }
 }

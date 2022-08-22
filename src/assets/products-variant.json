@@ -1,0 +1,69 @@
+{
+    "data": [
+        {
+            "id": "IDproduct1",
+            "name": "Product1",
+            "ProductVariant": [
+                {
+                    "id": "IDProductvariant1",
+                    "name": "Productvariant1",
+                    "VariantProductVariant": [
+                        {
+                            "id": "IDVariantProductvariant1",
+                            "name": "VariantProductvariant1"
+                        },
+                        {
+                            "id": "IDVariantProductvariant12",
+                            "name": "VariantProductvariant12"
+                        },
+                        {
+                            "id": "IDVariantProductvariant13",
+                            "name": "VariantProductvariant13"
+                        }
+                    ]
+                },
+                {
+                    "id": "IDProductvariant12",
+                    "name": "Productvariant12"
+                },
+                {
+                    "id": "IDProductvariant13",
+                    "name": "Productvariant13"
+                }
+            ]
+            
+        },
+        {
+            "id": "IDproduct2",
+            "name": "Product2",
+            "ProductVariant": [
+                {
+                    "id": "IDProductvariant2",
+                    "name": "Productvariant2"
+                },
+                {
+                    "id": "IDProductvariant21",
+                    "name": "Productvariant21"
+                },
+                {
+                    "id": "IDProductvariant22",
+                    "name": "Productvariant22"
+                }
+            ]
+        },
+        {
+            "id": "IDproduct3",
+            "name": "Product3",
+            "ProductVariant": [
+                {
+                    "id": "IDProductvariant3",
+                    "name": "Productvariant3"
+                },
+                {
+                    "id": "IDProductvariant31",
+                    "name": "Productvariant31"
+                }
+            ]
+        }
+    ]
+}

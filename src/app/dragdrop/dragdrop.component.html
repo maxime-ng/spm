@@ -1,0 +1,97 @@
+<div style="margin-bottom: 30px">
+  <h2>Single Tree</h2>
+  <p>Node reordering within a tree.</p>
+  <p-tree
+    [value]="files1"
+    [draggableNodes]="true"
+    [droppableNodes]="true"
+    draggableScope="self"
+    droppableScope="self"></p-tree>
+</div>
+
+<button
+  type="button"
+  (click)="showDialog()"
+  pButton
+  icon="pi pi-external-link"
+  label="View"></button>
+
+<h2 style="margin-top: 10px">Multiple Trees</h2>
+<p>Node reordering between multiple tree based on scope constraints.</p>
+<div class="grid p-fluid">
+  <div class="col-12 md:col-4">
+    <h3>Files</h3>
+    <p>Can transfer to Server 2.</p>
+    <p-tree
+      [value]="files2"
+      [draggableNodes]="true"
+      [droppableNodes]="true"
+      droppableScope="files"
+      draggableScope="server2"></p-tree>
+  </div>
+
+  <div class="col-12 md:col-4">
+    <h3>Server 1</h3>
+    <p>Can transfer to Files.</p>
+    <p-tree
+      [value]="files3"
+      [draggableNodes]="true"
+      [droppableNodes]="true"
+      droppableScope="server1"
+      draggableScope="files"></p-tree>
+  </div>
+
+  <div class="col-12 md:col-4">
+    <h3>Server 2</h3>
+    <p>Can transfer to Server 1.</p>
+    <p-tree
+      [value]="files4"
+      [draggableNodes]="true"
+      [droppableNodes]="true"
+      [droppableNodes]="true"
+      [droppableNodes]="true"
+      droppableScope="server2"
+      draggableScope="files"
+      droppableScope="server2"
+      draggableScope="server1"></p-tree>
+  </div>
+</div>
+
+<p-dialog
+  header="Flexible ScrollHeight"
+  [(visible)]="dialogVisible"
+  [style]="{ width: '70vw' }"
+  [baseZIndex]="10000"
+  [maximizable]="true"
+  [modal]="true"
+  [resizable]="true"
+  [contentStyle]="{ height: '400px' }"
+  styleClass="p-fluid">
+  <div class="left">
+    <p-tree
+      [value]="files2"
+      [draggableNodes]="true"
+      [droppableNodes]="true"
+      droppableScope="files"
+      draggableScope="server1"
+      scrollHeight="flex"></p-tree>
+  </div>
+  <div class="right">
+    <p-tree
+      [value]="files3"
+      [draggableNodes]="true"
+      [droppableNodes]="true"
+      droppableScope="server1"
+      draggableScope="files"
+      scrollHeight="flex"></p-tree>
+  </div>
+  <ng-template pTemplate="footer">
+    <button
+      type="button"
+      pButton
+      icon="pi pi-check"
+      (click)="dialogVisible = false"
+      label="Ok"
+      class="p-button-text"></button>
+  </ng-template>
+</p-dialog>

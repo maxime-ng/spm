@@ -18,6 +18,7 @@ import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
 
+
 @NgModule({
   exports: [
     MatSortModule,
@@ -35,6 +36,7 @@ import { MatSortModule } from "@angular/material/sort";
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
+    
   ],
 })
 export class MaterialExampleModule {}
