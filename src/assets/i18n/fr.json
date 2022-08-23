@@ -1,5 +1,21 @@
 {
     "dashboard": {
         "title": "cette page est en francais"
+},
+"tableproduct": {
+    "title": "Gérer les produits",
+    "BtnNew": "Nouveau Produits",
+    "BtnDelete": "Supprimer",
+    "BtnImport": "Importer",
+    "BtnExport": "Exporter",
+    "BtnClear": "Nettoyer",
+    "headeridentifier": "Identifiantproduit",
+    "headername": "Nom",
+    "MessagenewProduct": "Produit ajouté avec succès",
+    "MessageupdateProduct": "Produit Modifié avec succès",
+    "Messageconfirmationdelete": "Vous êtes sûr de vouloir supprimé les produits selectionnés?",
+    "Messagedeleteproduct": "produits supprimés",
+    "messageduplicateproduct": "le produit a bien été dupliqué"
+
 }
 }

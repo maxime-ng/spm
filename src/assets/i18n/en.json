@@ -1,5 +1,21 @@
 {
     "dashboard": {
         "title": "this page is in english"
+},
+"tableproduct": {
+    "title": "Manage product",
+    "BtnNew": "New Products",
+    "BtnDelete": "Delete",
+    "BtnImport": "Import",
+    "BtnExport": "Export",
+    "BtnClear": "Clear",
+    "headeridentifier": "Productidentifier",
+    "headername": "Name",
+    "MessagenewProduct": "sucessfull added product",
+    "MessageupdateProduct": "updated product",
+    "Messageconfirmationdelete": "Are you sure you want to delete the selected products?",
+    "Messagedeleteproduct": "product deleted",
+    "messageduplicateproduct": "Sucessfully duplicated product!"
+
 }
 }

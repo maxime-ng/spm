@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { AdmindashboardComponent } from "./admindashboard/admindashboard.component";
-import { DragDropComponent } from "./dragdrop/dragdrop.component";
+import { AdmindashboardComponent } from "./admin-dashboard/admin-dashboard.component";
+import { DragDropComponent } from "./drag-drop/drag-drop.component";
 import { LoginComponent } from "./login/login.component";
 import { ProductComponent } from "./product/product.component";
 import { ProjetComponent } from "./projet/projet.component";

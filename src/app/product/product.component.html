@@ -7,7 +7,7 @@
         <button
           pButton
           pRipple
-          label="New"
+          [label]="translate.instant('tableproduct.BtnNew')"
           title="New"
           icon="pi pi-plus"
           class="p-button-success p-mr-2"
@@ -15,7 +15,7 @@
         <button
           pButton
           pRipple
-          label="Delete"
+          [label]="translate.instant('tableproduct.BtnDelete')"
           icon="pi pi-trash"
           title="Delete"
           class="p-button-danger"
@@ -37,7 +37,8 @@
     </p-toolbar>
   </div>
 
-  <p-panel header="Manage Products">
+  <p-panel>
+    <h2 translate>tableproduct.title</h2>
     <p-table
       #dt
       [value]="products"
@@ -56,7 +57,7 @@
         <div style="text-align: left">
           <button
             pButton
-            label="Clear"
+            [label]="translate.instant('tableproduct.BtnClear')"
             class="p-button-outlined"
             icon="pi pi-filter-slash"
             title="Delete Filters"
@@ -151,7 +152,7 @@
               title="Manage Products Variants"
               class="p-button-rounded p-button-help"
               [style]="{ margin: '5px' }"
-              (click)="duplicateProduct(product)"></button>
+              (click)="ManageProductVariant()"></button>
           </td>
         </tr>
       </ng-template>

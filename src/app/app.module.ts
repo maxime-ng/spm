@@ -6,25 +6,25 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LoginComponent } from "./login/login.component";
-import { AdmindashboardComponent } from "./admindashboard/admindashboard.component";
+import { AdmindashboardComponent } from "./admin-dashboard/admin-dashboard.component";
 import { ProjetComponent } from "./projet/projet.component";
 
 
 import { FormsModule } from '@angular/forms';
 //pour le test à supprimer
 import { NodeService } from './test/nodeservice';
-import { NodeServices } from './dragdrop/nodeservice';
+import { NodeServices } from './services/nodeservice';
 
 
 // import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialExampleModule } from "./material-module";
-import {PrimengModule} from "./primeng-module"
+import {PrimengModule} from "./primeng.module"
 import { ProductComponent } from "./product/product.component";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 //pour le test à supprimer
 import { TestComponent } from './test/test.component';
-import { DragDropComponent } from './dragdrop/dragdrop.component';
+import { DragDropComponent } from './drag-drop/drag-drop.component';
 
 @NgModule({
   declarations: [

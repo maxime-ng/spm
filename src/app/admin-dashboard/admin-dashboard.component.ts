@@ -26,9 +26,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
  */
 
 @Component({
-  selector: "app-admindashboard",
-  templateUrl: "./admindashboard.component.html",
-  styleUrls: ["./admindashboard.component.scss"],
+  selector: "app-admin-dashboard",
+  templateUrl: "./admin-dashboard.component.html",
+  styleUrls: ["./admin-dashboard.component.scss"],
 })
 export class AdmindashboardComponent implements OnInit {
   displayedColumns: string[] = ["position", "name", "weight", "symbol"];

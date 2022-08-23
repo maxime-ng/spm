@@ -1,5 +1,5 @@
 import {Component,OnInit} from '@angular/core';
-import {NodeServices} from './nodeservice';
+import {NodeServices} from '../services/nodeservice';
 import {TreeNode} from 'primeng/api';
 import {TreeDragDropService} from 'primeng/api';
 import {MessageService} from 'primeng/api';
@@ -7,9 +7,9 @@ import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-dragdrop',
-  templateUrl: './dragdrop.component.html',
+  templateUrl: './drag-drop.component.html',
   providers: [TreeDragDropService,MessageService],
-  styleUrls: ['./dragdrop.component.scss']
+  styleUrls: ['./drag-drop.component.scss']
 })
 
 
@@ -23,6 +23,8 @@ export class DragDropComponent {
   files4: TreeNode[] = [];
   
   dialogVisible: boolean = false;
+  dialogVisible2: boolean = false;
+
   
   constructor(private nodeService: NodeServices) { }
 
@@ -47,8 +49,11 @@ export class DragDropComponent {
       ];
   }
 
-  showDialog() {
-    this.dialogVisible = true;
+showDialog() {
+  this.dialogVisible = true;
+}
+shownewDialog(){
+  this.dialogVisible2 = true;
 }
 }
 

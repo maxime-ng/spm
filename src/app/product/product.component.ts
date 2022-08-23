@@ -5,6 +5,7 @@ import { Product } from "../models/product";
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { Table } from "primeng/table";
+import { TranslateService } from "@ngx-translate/core";
 //import { table } from "console";
 
 
@@ -19,7 +20,6 @@ import { Table } from "primeng/table";
 export class ProductComponent implements OnInit {
   rows = 4;
   products: Product[] = [];
-
 
   element = event?.currentTarget as HTMLInputElement;
   cols: any[] = [];
@@ -38,7 +38,7 @@ export class ProductComponent implements OnInit {
 
 
    //product initialization for update
-   selectedProducts: Product = {
+  selectedProducts: Product = {
     productid: new Uint8Array(2),
     productidentifier: '',
     name: ''
@@ -47,7 +47,7 @@ export class ProductComponent implements OnInit {
   SelectedProducts: Product[] = [];
 
 
-  constructor(private productService: ProductService, private confirmationService: ConfirmationService,  private messageService: MessageService) {}
+  constructor(private productService: ProductService, private confirmationService: ConfirmationService,  private messageService: MessageService, public translate: TranslateService,) {}
 
   ngOnInit(): void {
     this.getProduct();
@@ -58,6 +58,7 @@ export class ProductComponent implements OnInit {
     ];
   }
 
+  //displays the product modification and addition window
   showSaveDialog(editar: boolean){
     // if(editar){
     //     this.product = this.selectedProducts;
@@ -69,11 +70,12 @@ export class ProductComponent implements OnInit {
     this.displaySaveDialog = true;
   }
 
+  //registers a new product and changes made to a product
   saveProduct(){
     if (this.submitted) {
       this.productService.update(this.product.productid, this.product.productidentifier, this.product.name).subscribe(
         (result:any) => {
-          this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product updated', life: 3000});
+          this.messageService.add({severity:'success', summary: 'Successful', detail: this.translate.instant('tableproduct.MessageupdateProduct'), life: 3000});
           this.product = result;
         },
         error =>{
@@ -87,7 +89,7 @@ export class ProductComponent implements OnInit {
       (result:any) => {
         let product = result as Product;
         this.products.push(product);
-        this.messageService.add({severity: 'success', summary: "resultat", detail: "Sucessfully added product!"})
+        this.messageService.add({severity: 'success', summary: "resultat", detail: this.translate.instant('tableproduct.MessagenewProduct')})
         this.displaySaveDialog = false;
       },
       error =>{
@@ -97,30 +99,27 @@ export class ProductComponent implements OnInit {
   }
   }
 
-    updateProduct(product: Product){
-      this.displaySaveDialog = true;
-      this.product = product;
-      this.submitted = true;
-    }
+  //selects the data of a product and returns the window for the modification
+  updateProduct(product: Product){
+    this.displaySaveDialog = true;
+    this.product = product;
+    this.submitted = true;
+  }
 
+  //returns the list of iddues products from the database
   getProduct() {
-    this.productService.getAll().subscribe((result: any) => {
-      //this.products = data;
-      for(let i=0; i<result.length; i++){
-        let product = result[i] as Product;
-        this.products.push(product);
-      }},
+    this.productService.getAll().subscribe((result: Product[]) => {
+      this.products = result;
+      // for(let i=0; i<result.length; i++){
+      //   let product = result[i] as Product;
+      //   this.products.push(product);
+      // }
+    },
       error => {
         console.log(error);
       }
     );
   }
-
-
-  editProduct(product: Product) {
-    // this.product = {...product};
-    // this.productDialog = true;
-}
 
 
 deleteProduct(product: Product) {
@@ -142,6 +141,8 @@ deleteProduct(product: Product) {
   // });
 }
 
+
+//function that shifts the products after deleting a product
 deleteObject(id: Uint8Array){
   let index = this.products.findIndex((e) => e.productid == id);
   if(index != -1){
@@ -151,10 +152,10 @@ deleteObject(id: Uint8Array){
 
 
 
-//delete many products
+//function that deletes products both global deletion and unitary deletion
 deleteSelectedProducts(){
   this.confirmationService.confirm({
-    message: 'Are you sure you want to delete the selected products?',
+    message: this.translate.instant('tableproduct.Messageconfirmationdelete'),
     header: 'Confirm',
     icon: 'pi pi-exclamation-triangle',
     accept: () => {
@@ -164,7 +165,7 @@ deleteSelectedProducts(){
       }
       this.productService.delete(SelectedProductIds).subscribe(
         (result:any) =>{
-          this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
+          this.messageService.add({severity:'success', summary: 'Successful', detail: this.translate.instant('tableproduct.Messagedeleteproduct'), life: 3000});
           for (let index = 0; index < SelectedProductIds.length; index++) {
             this.deleteObject(SelectedProductIds[index]);
           }
@@ -177,10 +178,12 @@ deleteSelectedProducts(){
 });
 }
 
+//function that clears the filters applied to the table
 clear(table: Table) {
   table.clear();
 }
 
+//duplicate a product
 duplicateProduct(product: Product){
   let pro: Product = {
     productid: new Uint8Array(2),
@@ -194,23 +197,26 @@ duplicateProduct(product: Product){
       (result:any) => {
         let index = this.products.findIndex((e) => e.productid == product.productid);
         this.products.splice(index+1,0,pro);
-        this.messageService.add({severity: 'success', summary: "resultat", detail: "Sucessfully duplicated product!"})
+        this.messageService.add({severity: 'success', summary: "resultat", detail: this.translate.instant('tableproduct.messageduplicateproduct')}) 
       },
       error =>{
         console.log(error);
       }
-    )}
+    )
+}
 
-
-
+//close the window after creating and modifying a product
 hideDialog() {
   this.displaySaveDialog = false;
   this.submitted = false;
 }
 
+//function to consult a product
 consultProduct(product : Product){
-
 }
+
+//function to manage the product variants of a product
+ManageProductVariant(){}
 
 }
 

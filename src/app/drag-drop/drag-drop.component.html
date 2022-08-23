@@ -8,13 +8,24 @@
     draggableScope="self"
     droppableScope="self"></p-tree>
 </div>
-
-<button
-  type="button"
-  (click)="showDialog()"
-  pButton
-  icon="pi pi-external-link"
-  label="View"></button>
+<div>
+  <div>
+    <button
+      type="button"
+      (click)="showDialog()"
+      pButton
+      icon="pi pi-external-link"
+      label="View"></button>
+  </div>
+  <div style="padding-top: 3px">
+    <button
+      type="button"
+      (click)="shownewDialog()"
+      pButton
+      icon="pi pi-external-link"
+      label="View 2"></button>
+  </div>
+</div>
 
 <h2 style="margin-top: 10px">Multiple Trees</h2>
 <p>Node reordering between multiple tree based on scope constraints.</p>
@@ -48,35 +59,38 @@
       [value]="files4"
       [draggableNodes]="true"
       [droppableNodes]="true"
-      [droppableNodes]="true"
-      [droppableNodes]="true"
       droppableScope="server2"
-      draggableScope="files"
-      droppableScope="server2"
-      draggableScope="server1"></p-tree>
+      draggableScope="files"></p-tree>
   </div>
 </div>
 
 <p-dialog
-  header="Flexible ScrollHeight"
+  header="Fenetre Serveur 1"
   [(visible)]="dialogVisible"
-  [style]="{ width: '70vw' }"
+  [style]="{ border: 'solid black 1px' }"
   [baseZIndex]="10000"
   [maximizable]="true"
-  [modal]="true"
+  [modal]="false"
   [resizable]="true"
-  [contentStyle]="{ height: '400px' }"
+  position="left"
+  [contentStyle]="{ height: '350px', width: '30vw' }"
   styleClass="p-fluid">
   <div class="left">
+    <h3>Files</h3>
+    <p>Can transfer to Server 2.</p>
     <p-tree
       [value]="files2"
       [draggableNodes]="true"
       [droppableNodes]="true"
+      [droppableNodes]="true"
       droppableScope="files"
       draggableScope="server1"
+      draggableScope="server2"
       scrollHeight="flex"></p-tree>
   </div>
   <div class="right">
+    <h3>Server 1</h3>
+    <p>Can transfer to Files.</p>
     <p-tree
       [value]="files3"
       [draggableNodes]="true"
@@ -91,6 +105,51 @@
       pButton
       icon="pi pi-check"
       (click)="dialogVisible = false"
+      label="Ok"
+      class="p-button-text"></button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog
+  header="Fenetre serveur 2"
+  [(visible)]="dialogVisible2"
+  [style]="{ border: 'solid black 1px' }"
+  [baseZIndex]="10000"
+  [maximizable]="true"
+  [modal]="false"
+  [contentStyle]="{ height: '350px', width: '30vw' }"
+  styleClass="p-fluid"
+  [resizable]="true"
+  position="right">
+  <div class="left">
+    <h3>Files</h3>
+    <p>Can transfer to Server 2.</p>
+    <p-tree
+      [value]="files2"
+      [draggableNodes]="true"
+      [droppableNodes]="true"
+      [droppableNodes]="true"
+      droppableScope="files"
+      draggableScope="server1"
+      draggableScope="server2"
+      scrollHeight="flex"></p-tree>
+  </div>
+  <div class="right">
+    <h3>Server 2</h3>
+    <p>Can transfer to Server 1.</p>
+    <p-tree
+      [value]="files4"
+      [draggableNodes]="true"
+      [droppableNodes]="true"
+      droppableScope="server2"
+      draggableScope="files"></p-tree>
+  </div>
+  <ng-template pTemplate="footer">
+    <button
+      type="button"
+      pButton
+      icon="pi pi-check"
+      (click)="dialogVisible2 = false"
       label="Ok"
       class="p-button-text"></button>
   </ng-template>
