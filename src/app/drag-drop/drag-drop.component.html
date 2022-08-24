@@ -35,6 +35,7 @@
     <p>Can transfer to Server 2.</p>
     <p-tree
       [value]="files2"
+      dropCopyNode="true"
       [draggableNodes]="true"
       [droppableNodes]="true"
       droppableScope="files"
@@ -46,6 +47,7 @@
     <p>Can transfer to Files.</p>
     <p-tree
       [value]="files3"
+      dropCopyNode="true"
       [draggableNodes]="true"
       [droppableNodes]="true"
       droppableScope="server1"
@@ -57,10 +59,11 @@
     <p>Can transfer to Server 1.</p>
     <p-tree
       [value]="files4"
+      dropCopyNode="true"
       [draggableNodes]="true"
       [droppableNodes]="true"
       droppableScope="server2"
-      draggableScope="files"></p-tree>
+      draggableScope="server1"></p-tree>
   </div>
 </div>
 

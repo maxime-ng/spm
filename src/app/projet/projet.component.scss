@@ -1,19 +1,29 @@
+
+$width: 100%;
+$margin-top: 10px;
+$font-size: 14px;
+
+$widthform2: 50%;
+$padding-left: 15px;
+
+$widthrechercher: 30%;
+
 table {
-    width: 100%;
-    margin-top: 10px;
+    width: $width;
+    margin-top: $margin-top;
   }
 
   .mat-form-field {
-    font-size: 14px;
-    width: 100%;
+    font-size: $font-size;
+    width: $width;
   }
 
   .form2{
-    font-size: 14px;
-    width: 50%;
-    padding-left: 15px;
+    font-size: $font-size;
+    width: $widthform2;
+    padding-left: $padding-left;
   }
 
   .rechercher{
-    width: 30%;
-  }
+    width: $widthrechercher;
+  } 

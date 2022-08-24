@@ -1,31 +1,42 @@
 
 
+
+$width: 100%;
+$display: flex;
+$justify-content: center;
+$height: 1400px ;
+$align-items: center;
+$background-color: rgba(36, 36, 112, 0.555);
+
+$max-width: 330px;
+$text-align: center;
+
+$heightbt: 50px;
+$margin: 0 auto;
+
 .bodylogin {
-  display: flex;
-  justify-content: center;
-  height: 1400px ;
-  align-items: center;
-  background-color: rgba(36, 36, 112, 0.555);
+  display: $display;
+  justify-content: $justify-content;
+  height: $height ;
+  align-items: $align-items;
+  background-color: $background-color;
 }
 
-
-
-
-
 .login {
-  width: 100%;
-  max-width: 330px;
-  text-align: center;
+  width: $width;
+  max-width: $max-width;
+  text-align: $text-align;
   
 }
 .log {
-  width: 100%;
+  width: $width;
 }
 
 button {
-  height: 50px;
+  height: $heightbt;
 }
 
 .spinner {
-  margin: 0 auto;
+  margin: $margin;
 }
+ 

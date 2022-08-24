@@ -73,29 +73,23 @@ export class ProductComponent implements OnInit {
   //registers a new product and changes made to a product
   saveProduct(){
     if (this.submitted) {
-      this.productService.update(this.product.productid, this.product.productidentifier, this.product.name).subscribe(
-        (result:any) => {
+      this.productService.update(this.product.productid, this.product.productidentifier, this.product.name).subscribe({
+        next:(result:any) => {
           this.messageService.add({severity:'success', summary: 'Successful', detail: this.translate.instant('tableproduct.MessageupdateProduct'), life: 3000});
           this.product = result;
         },
-        error =>{
-          console.log(error);
-        }
-      )
+      })
     }
     else{ 
     this.productService.save(this.product.name, this.product.productidentifier
-    ).subscribe(
-      (result:any) => {
+    ).subscribe({ 
+      next:(result:any) => {
         let product = result as Product;
         this.products.push(product);
         this.messageService.add({severity: 'success', summary: "resultat", detail: this.translate.instant('tableproduct.MessagenewProduct')})
         this.displaySaveDialog = false;
       },
-      error =>{
-        console.log(error);
-      }
-    )
+    })
   }
   }
 
@@ -108,17 +102,16 @@ export class ProductComponent implements OnInit {
 
   //returns the list of iddues products from the database
   getProduct() {
-    this.productService.getAll().subscribe((result: Product[]) => {
+    this.productService.getAll().subscribe({next:(result: Product[]) => {
       this.products = result;
       // for(let i=0; i<result.length; i++){
       //   let product = result[i] as Product;
       //   this.products.push(product);
       // }
     },
-      error => {
-        console.log(error);
-      }
-    );
+  });
+  complete: () => {}
+   error: () => {}
   }
 
 
@@ -163,17 +156,16 @@ deleteSelectedProducts(){
       for(let i = 0; i<this.SelectedProducts.length; i++){
         SelectedProductIds[i] = this.SelectedProducts[i].productid;
       }
-      this.productService.delete(SelectedProductIds).subscribe(
-        (result:any) =>{
+      this.productService.delete(SelectedProductIds).subscribe({
+        next:(result:any) =>{
           this.messageService.add({severity:'success', summary: 'Successful', detail: this.translate.instant('tableproduct.Messagedeleteproduct'), life: 3000});
           for (let index = 0; index < SelectedProductIds.length; index++) {
             this.deleteObject(SelectedProductIds[index]);
           }
         },
-        error =>{
-          console.log(error);
-        }
-      )
+      })
+      complete: () => {}
+      error: () => {}
     }
 });
 }
@@ -193,16 +185,16 @@ duplicateProduct(product: Product){
   pro.name = product.name+"_copie";
   pro.productidentifier = product.productidentifier+"_copie";
   this.productService.save(pro.name, pro.productidentifier
-    ).subscribe(
-      (result:any) => {
+    ).subscribe({ 
+      next:(result:any) => {
         let index = this.products.findIndex((e) => e.productid == product.productid);
         this.products.splice(index+1,0,pro);
         this.messageService.add({severity: 'success', summary: "resultat", detail: this.translate.instant('tableproduct.messageduplicateproduct')}) 
       },
-      error =>{
-        console.log(error);
-      }
-    )
+      
+    })
+    complete: () => {}
+    error: () => {}
 }
 
 //close the window after creating and modifying a product
@@ -220,4 +212,12 @@ ManageProductVariant(){}
 
 }
 
+
+
+
+
+
+function next(next: any, arg1: (result: any) => void, arg2: (error: any) => void) {
+  throw new Error("Function not implemented.");
+}
 

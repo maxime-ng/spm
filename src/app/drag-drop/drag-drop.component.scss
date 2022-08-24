@@ -1,17 +1,30 @@
+
+
+$position: absolute;
+$right: 0px;
+$width: 50%;
+$left: 50%;
+
+$padding: 10px;
+
+$border: solid black 1px;
+
+@mixin  position() {
+    position: $position;
+    width: $width;
+    padding: $padding;
+}
+
 .right {
-    position: absolute;
-    right: 0px;
-    width: 50%;
-    padding: 10px;
+    @include position();
+    right: $right;
 }
 
 .left {
-    position: absolute;
-    left: 0px;
-    width: 50%;
-    padding: 10px;
+    @include position();
+    left: $left;
 }
 
 p-dialog{
-    border: solid black 1px;
-}
+    border: $border;
+} 
