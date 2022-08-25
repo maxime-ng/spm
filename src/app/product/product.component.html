@@ -29,10 +29,14 @@
           mode="basic"
           accept="image/*"
           [maxFileSize]="1000000"
-          label="Import"
-          chooseLabel="Import"
+          [chooseLabel]="translate.instant('tableproduct.BtnImport')"
           [style]="{ margin: '5px' }"></p-fileUpload>
-        <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+        <button
+          pButton
+          pRipple
+          [label]="translate.instant('tableproduct.BtnExport')"
+          icon="pi pi-upload"
+          class="p-button-help"></button>
       </ng-template>
     </p-toolbar>
   </div>
@@ -96,7 +100,11 @@
         let-expanded="expanded"
         let-columns="columns"
         let-rowIndex="rowIndex">
-        <tr [pSelectableRow]="product" [pSelectableRowIndex]="rowIndex">
+        <tr
+          class="some-class"
+          [pSelectableRow]="product"
+          [pSelectableRowIndex]="rowIndex"
+          [class.ui-state-highlight]="product === highlighted">
           <!-- <td>
             <p-tableCheckbox [value]="product"></p-tableCheckbox>
           </td> -->
@@ -110,7 +118,7 @@
               [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
           </td>
           <td *ngFor="let col of columns">
-            {{ product[col.field] }}
+            <a (click)="highlighted = product"> {{ product[col.field] }}</a>
           </td>
           <td>
             <button

@@ -25,6 +25,7 @@ export class ProductComponent implements OnInit {
   cols: any[] = [];
   productDialog: boolean = true;
 
+  highlighted: any;
   //display of the new product 
   displaySaveDialog: boolean = false;
   submitted: boolean = false;
@@ -44,6 +45,7 @@ export class ProductComponent implements OnInit {
     name: ''
   };
 
+  //product selected initialization 
   SelectedProducts: Product[] = [];
 
 
@@ -70,8 +72,8 @@ export class ProductComponent implements OnInit {
     this.displaySaveDialog = true;
   }
 
-  //registers a new product and changes made to a product
   saveProduct(){
+    //this.submitted = true in updateProduct. it helps us diferenciate an update action and an add action. 
     if (this.submitted) {
       this.productService.update(this.product.productid, this.product.productidentifier, this.product.name).subscribe({
         next:(result:any) => {
@@ -85,6 +87,7 @@ export class ProductComponent implements OnInit {
     ).subscribe({ 
       next:(result:any) => {
         let product = result as Product;
+        //push add a new product at the end of the table
         this.products.push(product);
         this.messageService.add({severity: 'success', summary: "resultat", detail: this.translate.instant('tableproduct.MessagenewProduct')})
         this.displaySaveDialog = false;
@@ -93,14 +96,12 @@ export class ProductComponent implements OnInit {
   }
   }
 
-  //selects the data of a product and returns the window for the modification
   updateProduct(product: Product){
     this.displaySaveDialog = true;
     this.product = product;
     this.submitted = true;
   }
 
-  //returns the list of iddues products from the database
   getProduct() {
     this.productService.getAll().subscribe({next:(result: Product[]) => {
       this.products = result;
@@ -175,7 +176,7 @@ clear(table: Table) {
   table.clear();
 }
 
-//duplicate a product
+//duplicate a product: create new product with the same properties than a product selected  + the "_copie" extension 
 duplicateProduct(product: Product){
   let pro: Product = {
     productid: new Uint8Array(2),
@@ -188,6 +189,7 @@ duplicateProduct(product: Product){
     ).subscribe({ 
       next:(result:any) => {
         let index = this.products.findIndex((e) => e.productid == product.productid);
+        //splice insert the duplicated product after the original product
         this.products.splice(index+1,0,pro);
         this.messageService.add({severity: 'success', summary: "resultat", detail: this.translate.instant('tableproduct.messageduplicateproduct')}) 
       },
@@ -203,21 +205,11 @@ hideDialog() {
   this.submitted = false;
 }
 
-//function to consult a product
 consultProduct(product : Product){
 }
 
-//function to manage the product variants of a product
 ManageProductVariant(){}
 
 }
 
-
-
-
-
-
-function next(next: any, arg1: (result: any) => void, arg2: (error: any) => void) {
-  throw new Error("Function not implemented.");
-}
 

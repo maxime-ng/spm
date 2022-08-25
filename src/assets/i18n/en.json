@@ -4,9 +4,9 @@
 },
 "tableproduct": {
     "title": "Manage product",
-    "BtnNew": "New Products",
+    "BtnNew": "New Product",
     "BtnDelete": "Delete",
-    "BtnImport": "Import",
+    "BtnImport": "Upload",
     "BtnExport": "Export",
     "BtnClear": "Clear",
     "headeridentifier": "Productidentifier",
