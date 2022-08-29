@@ -4,7 +4,7 @@
 $width: 100%;
 $display: flex;
 $justify-content: center;
-$height: 1130px ;
+$height: 204%;
 $align-items: center;
 $background-color: rgba(36, 36, 112, 0.555);
 
@@ -13,6 +13,7 @@ $text-align: center;
 
 $heightbt: 50px;
 $margin: 0 auto;
+
 
 .bodylogin {
   display: $display;
@@ -26,7 +27,7 @@ $margin: 0 auto;
   width: $width;
   max-width: $max-width;
   text-align: $text-align;
-  
+
 }
 .log {
   width: $width;

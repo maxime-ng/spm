@@ -7,7 +7,6 @@ import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LoginComponent } from "./login/login.component";
 import { AdmindashboardComponent } from "./admin-dashboard/admin-dashboard.component";
-import { ProjetComponent } from "./projet/projet.component";
 
 
 import { FormsModule } from '@angular/forms';
@@ -25,16 +24,17 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 //pour le test à supprimer
 import { TestComponent } from './test/test.component';
 import { DragDropComponent } from './drag-drop/drag-drop.component';
+import { VariantProductComponent } from './Variant-Product/Variant-Product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AdmindashboardComponent,
-    ProjetComponent,
     ProductComponent,
     TestComponent,
     DragDropComponent,
+    VariantProductComponent,
   ],
 
   imports: [
@@ -55,7 +55,7 @@ import { DragDropComponent } from './drag-drop/drag-drop.component';
 
   ],
 
-  providers: [NodeService, NodeServices],
+  providers: [NodeService, NodeServices], 
   bootstrap: [AppComponent],
 })
 export class AppModule {}

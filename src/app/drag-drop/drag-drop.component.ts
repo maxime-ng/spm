@@ -3,6 +3,7 @@ import {NodeServices} from '../services/nodeservice';
 import {TreeNode} from 'primeng/api';
 import {TreeDragDropService} from 'primeng/api';
 import {MessageService} from 'primeng/api';
+import { Draggable } from 'primeng/dragdrop';
 
 
 @Component({
@@ -55,5 +56,12 @@ showDialog() {
 shownewDialog(){
   this.dialogVisible2 = true;
 }
+
+NodeDrop(e:any){
+console.log(e);
+this.files2.push(e.dragNode);
 }
+
+}
+
 

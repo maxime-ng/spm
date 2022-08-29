@@ -6,21 +6,7 @@
             "ProductVariant": [
                 {
                     "id": "IDProductvariant1",
-                    "name": "Productvariant1",
-                    "VariantProductVariant": [
-                        {
-                            "id": "IDVariantProductvariant1",
-                            "name": "VariantProductvariant1"
-                        },
-                        {
-                            "id": "IDVariantProductvariant12",
-                            "name": "VariantProductvariant12"
-                        },
-                        {
-                            "id": "IDVariantProductvariant13",
-                            "name": "VariantProductvariant13"
-                        }
-                    ]
+                    "name": "Productvariant1"
                 },
                 {
                     "id": "IDProductvariant12",

@@ -4,8 +4,8 @@ import { AdmindashboardComponent } from "./admin-dashboard/admin-dashboard.compo
 import { DragDropComponent } from "./drag-drop/drag-drop.component";
 import { LoginComponent } from "./login/login.component";
 import { ProductComponent } from "./product/product.component";
-import { ProjetComponent } from "./projet/projet.component";
 import { TestComponent } from "./test/test.component";
+import { VariantProductComponent } from "./Variant-Product/Variant-Product.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
@@ -16,10 +16,11 @@ const routes: Routes = [
     path: "admindashboard",
     component: AdmindashboardComponent,
     children: [
-      { path: "projet", component: ProjetComponent },
       { path: "product", component: ProductComponent },
       { path: "test", component: TestComponent },
       { path: "dragdrop", component: DragDropComponent },
+      { path: "variantproduct", component: VariantProductComponent },
+
 
     ],
   },

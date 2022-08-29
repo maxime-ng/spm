@@ -32,19 +32,21 @@
 <div class="grid p-fluid">
   <div class="col-12 md:col-4">
     <h3>Files</h3>
-    <p>Can transfer to Server 2.</p>
+    <p>Can transfer to List 2.</p>
     <p-tree
       [value]="files2"
       dropCopyNode="true"
-      isDropCopyNode="true"
       [draggableNodes]="true"
       [droppableNodes]="true"
       droppableScope="files"
-      draggableScope="server2"></p-tree>
+      draggableScope="server2">
+      <!-- <ng-template let-node pTemplate type="default">
+        <span (onDrop)="onNodeDrop($event, node)"></span> </ng-template> -->
+    </p-tree>
   </div>
 
   <div class="col-12 md:col-4">
-    <h3>Server 1</h3>
+    <h3>Liste 1</h3>
     <p>Can transfer to Files.</p>
     <p-tree
       [value]="files3"
@@ -56,16 +58,16 @@
   </div>
 
   <div class="col-12 md:col-4">
-    <h3>Server 2</h3>
-    <p>Can transfer to Server 1.</p>
+    <h3>Liste 2</h3>
+    <p>Can transfer to List 1.</p>
     <p-tree
       [value]="files4"
       dropCopyNode="true"
-      isDropCopyNode="true"
       [draggableNodes]="true"
       [droppableNodes]="true"
       droppableScope="server2"
-      draggableScope="server1"></p-tree>
+      draggableScope="server1"
+      (onNodeDrop)="NodeDrop($event)"></p-tree>
   </div>
 </div>
 
@@ -74,7 +76,7 @@
   [(visible)]="dialogVisible"
   [style]="{ border: 'solid rgb(175, 170, 170) 1px' }"
   [baseZIndex]="10000"
-  [maximizable]="true"
+  [maximizable]="false"
   [modal]="false"
   [resizable]="true"
   position="center"
