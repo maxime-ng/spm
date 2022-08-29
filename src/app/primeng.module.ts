@@ -21,6 +21,7 @@ import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { PanelModule } from "primeng/panel";
 import { TreeTableModule } from "primeng/treetable";
+import { DragDropModule } from 'primeng/dragdrop';
 import { TreeModule } from "primeng/tree";
 import { MessagesModule } from "primeng/messages";
 import { MessageModule } from "primeng/message";
@@ -48,6 +49,7 @@ import { MessageModule } from "primeng/message";
     InputTextareaModule,
     TreeTableModule,
     RadioButtonModule,
+    DragDropModule,
     InputNumberModule,
     ConfirmDialogModule,
     PanelModule,
@@ -66,6 +68,7 @@ import { MessageModule } from "primeng/message";
     ContextMenuModule,
     MultiSelectModule,
     DialogModule,
+    DragDropModule,
     MessagesModule,
     MessageModule,
     DropdownModule,

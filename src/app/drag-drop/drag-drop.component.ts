@@ -11,7 +11,7 @@ import {MessageService} from 'primeng/api';
   providers: [TreeDragDropService,MessageService],
   styleUrls: ['./drag-drop.component.scss']
 })
-
+ 
 
 export class DragDropComponent { 
   files1: TreeNode[] = [];

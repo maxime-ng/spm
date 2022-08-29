@@ -12,3 +12,12 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.p-datatable .p-datatable-tbody > tr.p-highlight{
+  background: #68d3bc !important;
+  color: #05070d !important;
+}
+
+.p-datatable .p-datatable-tbody > tr:hover {
+  background-color: rgb(240, 248, 244) !important;
+}

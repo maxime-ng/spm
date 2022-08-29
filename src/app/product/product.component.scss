@@ -13,18 +13,16 @@
 }
 
 .ui-state-highlight {
-    background: red;
+    background: #0d64d5 !important;
+    color: #05070d !important;
   }
 
- .p-highlight {
+ tr.p-highlight {
     background: #0d64d5;
     color: #05070d;
 }
 
-.p-datatable .p-datatable-tbody > tr.p-highlight{
-    background: #0d64d5 !important;
-    color: #05070d !important;
-}
+
 
   
 

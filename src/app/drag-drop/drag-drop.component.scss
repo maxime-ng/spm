@@ -7,7 +7,7 @@ $left: 50%;
 
 $padding: 10px;
 
-$border: solid black 1px;
+$border: solid rgb(207, 203, 203) 1px;
 
 @mixin  position() {
     position: $position;
@@ -17,14 +17,19 @@ $border: solid black 1px;
 
 .right {
     @include position();
-    right: $right;
+    position: absolute;
+    right:50%;
+    $padding: 10px;
 }
 
 .left {
     @include position();
     left: $left;
+    position: absolute;
+    $padding: 10px;
 }
 
-p-dialog{
-    border: $border;
-} 
+// .p-fluid{
+//     // border: $border;
+    
+// } 

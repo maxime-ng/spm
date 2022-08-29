@@ -1,12 +1,12 @@
 
 
 $font-text: 'Noto Sans', 'Open Sans', sans-serif;
-$height: 100vh;
+$height: 1390px;
 $width: 150px;
 
 
 mat-drawer-container {
-  height: $height;
+  height: $height; 
 }
 
 #dr {
@@ -14,7 +14,8 @@ mat-drawer-container {
 }
 
 .main-content {
-  height: $height;
+  // height: $height;
+  height: max-content;
   margin: 1rem;
 }
 

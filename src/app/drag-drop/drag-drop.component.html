@@ -36,6 +36,7 @@
     <p-tree
       [value]="files2"
       dropCopyNode="true"
+      isDropCopyNode="true"
       [draggableNodes]="true"
       [droppableNodes]="true"
       droppableScope="files"
@@ -60,6 +61,7 @@
     <p-tree
       [value]="files4"
       dropCopyNode="true"
+      isDropCopyNode="true"
       [draggableNodes]="true"
       [droppableNodes]="true"
       droppableScope="server2"
@@ -70,12 +72,12 @@
 <p-dialog
   header="Fenetre Serveur 1"
   [(visible)]="dialogVisible"
-  [style]="{ border: 'solid black 1px' }"
+  [style]="{ border: 'solid rgb(175, 170, 170) 1px' }"
   [baseZIndex]="10000"
   [maximizable]="true"
   [modal]="false"
   [resizable]="true"
-  position="left"
+  position="center"
   [contentStyle]="{ height: '350px', width: '30vw' }"
   styleClass="p-fluid">
   <div class="left">
@@ -116,7 +118,7 @@
 <p-dialog
   header="Fenetre serveur 2"
   [(visible)]="dialogVisible2"
-  [style]="{ border: 'solid black 1px' }"
+  [style]="{ border: 'solid rgb(175, 170, 170) 1px' }"
   [baseZIndex]="10000"
   [maximizable]="true"
   [modal]="false"

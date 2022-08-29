@@ -100,11 +100,7 @@
         let-expanded="expanded"
         let-columns="columns"
         let-rowIndex="rowIndex">
-        <tr
-          class="some-class"
-          [pSelectableRow]="product"
-          [pSelectableRowIndex]="rowIndex"
-          [class.ui-state-highlight]="product === highlighted">
+        <tr class="some-class" [pSelectableRow]="product" [pSelectableRowIndex]="rowIndex">
           <!-- <td>
             <p-tableCheckbox [value]="product"></p-tableCheckbox>
           </td> -->
@@ -118,7 +114,7 @@
               [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
           </td>
           <td *ngFor="let col of columns">
-            <a (click)="highlighted = product"> {{ product[col.field] }}</a>
+            {{ product[col.field] }}
           </td>
           <td>
             <button
