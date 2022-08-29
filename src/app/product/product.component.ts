@@ -6,14 +6,6 @@ import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { Table } from "primeng/table";
 import { TranslateService } from "@ngx-translate/core";
-//import { table } from "console";
-
-// @Component({
-//   selector: 'app-test2',
-//   templateUrl: './test2.component.html',
-//   styleUrls: ['./test2.component.scss']
-// })
-// export class Test2Component implements OnInit {
 
 @Component({
   selector: "app-product",
@@ -31,54 +23,69 @@ export class ProductComponent implements OnInit {
   productDialog: boolean = true;
 
   highlighted: any;
-  //display of the new product 
+  /**
+   * display of the new product 
+   */
   displaySaveDialog: boolean = false;
   submitted: boolean = false;
 
-  //product initialization
+  /**
+   * product initialization
+   */
   product: Product = {
     productid: new Uint8Array(2),
     productidentifier: '',
     name: ''
   };
 
-
-   //product initialization for update
+/**
+ * product initialization for update
+ */
   selectedProducts: Product = {
     productid: new Uint8Array(2),
     productidentifier: '',
     name: ''
   };
 
-  //product selected initialization 
+  /**
+   * product selected initialization 
+   */
   SelectedProducts: Product[] = [];
 
 
+  /**
+   * 
+   * @param productService 
+   * @param confirmationService 
+   * @param messageService 
+   * @param translate 
+   */
   constructor(private productService: ProductService, private confirmationService: ConfirmationService,  private messageService: MessageService, public translate: TranslateService,) {}
 
+  /**
+   * 
+   */
   ngOnInit(): void {
     this.getProduct();
-    //this.productService.getProductwithvariant().then(data => this.products = data);
     this.cols = [
       {field: "productidentifier", header: "Productidentifier"},
       {field: "name", header: "Name"}
     ];
   }
 
-  //displays the product modification and addition window
+  /**
+   * displays the product modification and addition window
+   * @param editar 
+   */
   showSaveDialog(editar: boolean){
-    // if(editar){
-    //     this.product = this.selectedProducts;
-    //     return;
-    // }else{
-    //   this.messageService.add({severity: 'warn', summary: "Warning!", detail: "select product please!"});
-    //   this.product = new Product();
-    // }
     this.displaySaveDialog = true;
   }
 
+  /**
+   * this.submitted = true in updateProduct. it helps us diferenciate an update action and an add action. 
+   * 
+   */
   saveProduct(){
-    //this.submitted = true in updateProduct. it helps us diferenciate an update action and an add action. 
     if (this.submitted) {
       this.productService.update(this.product.productid, this.product.productidentifier, this.product.name).subscribe({
         next:(result:any) => {
@@ -101,19 +108,22 @@ export class ProductComponent implements OnInit {
   }
   }
 
+  /**
+   * 
+   * @param product 
+   */
   updateProduct(product: Product){
     this.displaySaveDialog = true;
     this.product = product;
     this.submitted = true;
   }
 
+  /**
+   * get all the product from the back
+   */
   getProduct() {
     this.productService.getAll().subscribe({next:(result: Product[]) => {
       this.products = result;
-      // for(let i=0; i<result.length; i++){
-      //   let product = result[i] as Product;
-      //   this.products.push(product);
-      // }
     },
   });
   complete: () => {}
@@ -121,27 +131,11 @@ export class ProductComponent implements OnInit {
   }
 
 
-deleteProduct(product: Product) {
-  // this.confirmationService.confirm({
-  //     message: 'Are you sure you want to delete ' + product.name + '?',
-  //     header: 'Confirm',
-  //     icon: 'pi pi-exclamation-triangle',
-  //     accept: () => {
-  //       this.productService.delete(product.productid).subscribe(
-  //         (result:any) =>{
-  //           this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
-  //           this.deleteObject(product.productid);
-  //         },
-  //         error =>{
-  //           console.log(error);
-  //         }
-  //       )
-  //     }
-  // });
-}
-
-
-//function that shifts the products after deleting a product
+/**
+ * 
+ * function that shifts the products after deleting a product
+ * @param id : parameter
+ */
 deleteObject(id: Uint8Array){
   let index = this.products.findIndex((e) => e.productid == id);
   if(index != -1){
@@ -151,7 +145,11 @@ deleteObject(id: Uint8Array){
 
 
 
-//function that deletes products both global deletion and unitary deletion
+
+/**
+ * function that deletes products both global deletion and unitary deletion
+ * 
+ */
 deleteSelectedProducts(){
   this.confirmationService.confirm({
     message: this.translate.instant('tableproduct.Messageconfirmationdelete'),
@@ -176,12 +174,21 @@ deleteSelectedProducts(){
 });
 }
 
-//function that clears the filters applied to the table
+
+/**
+ * function that clears the filters applied to the table
+ * @param table 
+ */
 clear(table: Table) {
   table.clear();
 }
 
-//duplicate a product: create new product with the same properties than a product selected  + the "_copie" extension 
+
+/**
+ * 
+ * duplicate a product: create new product with the same properties than a product selected  + the "_copie" extension 
+ * @param product 
+ */
 duplicateProduct(product: Product){
   let pro: Product = {
     productid: new Uint8Array(2),
@@ -204,7 +211,9 @@ duplicateProduct(product: Product){
     error: () => {}
 }
 
-//close the window after creating and modifying a product
+/**
+ * close the window after creating and modifying a product
+ */
 hideDialog() {
   this.displaySaveDialog = false;
   this.submitted = false;

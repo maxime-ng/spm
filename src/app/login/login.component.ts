@@ -12,6 +12,12 @@ export class LoginComponent implements OnInit {
   form: UntypedFormGroup;
   loading = false;
 
+  /**
+   * 
+   * @param fb 
+   * @param _snackBar 
+   * @param router 
+   */
   constructor(
     private fb: UntypedFormBuilder,
     private _snackBar: MatSnackBar,
@@ -25,24 +31,33 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  /**
+   * user authentification
+   */
   connexion() {
     const user = this.form.value.user;
     const password = this.form.value.password;
 
     if (user == "maxime" && password == "admin123") {
-      // Redirection vers le dashboard
+      /**
+       * Redirection vers le dashboard
+       */
       this.fakeLoading();
     } else {
       this.router.navigate(["/login"]);
-      //Affiche message d'erreur
+      /**
+       * Affiche message d'erreur
+       */
       this.error();
       this.form.reset();
     }
   }
 
+  /**
+   * position/ emplacement du message d'erreur ainsi que son temps d'apparition
+   */
   error() {
     this._snackBar.open("ces identifiants ne corespondent à aucun utilisateur", "", {
-      //position/ emplacement du message d'erreur ainsi que son temps d'apparition
       duration: 3000,
       horizontalPosition: "center",
       verticalPosition: "bottom",
@@ -52,7 +67,9 @@ export class LoginComponent implements OnInit {
   fakeLoading() {
     this.loading = true;
     setTimeout(() => {
-      //Redirection vers le dashbord
+      /**
+       * Redirection vers le dashbord
+       */
       this.router.navigate(["admindashboard"]);
     }, 1500);
   }

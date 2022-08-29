@@ -5,11 +5,11 @@ import {TreeNode} from 'primeng/api';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './test.component.html',
-  styleUrls: ["./test.component.scss"],
+  templateUrl: './arborescence.component.html',
+  styleUrls: ["./arborescence.component.scss"],
 
 })
-export class TestComponent { 
+export class ArborescenceComponent { 
     files: TreeNode[] = [];
 
     cols: any[] = [];

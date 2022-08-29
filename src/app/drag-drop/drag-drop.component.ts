@@ -54,12 +54,28 @@ showDialog() {
   this.dialogVisible = true;
 }
 shownewDialog(){
-  this.dialogVisible2 = true;
+  this.dialogVisible2 = true; 
 }
 
-NodeDrop(e:any){
-console.log(e);
-this.files2.push(e.dragNode);
+NodeDropfile2(e:any){
+ console.log(e);
+ this.files2.push(e.dragNode);
+ }
+
+
+NodeDropList1(e:any){
+  console.log(e);
+  this.files3.push(e.dragNode);
+}
+
+NodeDropList2(e:any){
+  console.log(e);
+  this.files4.push(e.dragNode);
+}
+
+NodeDropList(e:any){
+  console.log(e);
+  this.files1.push(e.dragNode);
 }
 
 }

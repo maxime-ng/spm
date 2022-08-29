@@ -11,7 +11,7 @@ import { AdmindashboardComponent } from "./admin-dashboard/admin-dashboard.compo
 
 import { FormsModule } from '@angular/forms';
 //pour le test à supprimer
-import { NodeService } from './test/nodeservice';
+import { NodeService } from './arborescence/nodeservice';
 import { NodeServices } from './services/nodeservice';
 
 
@@ -22,9 +22,9 @@ import { ProductComponent } from "./product/product.component";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 //pour le test à supprimer
-import { TestComponent } from './test/test.component';
+import { ArborescenceComponent } from './arborescence/arborescence.component';
 import { DragDropComponent } from './drag-drop/drag-drop.component';
-import { VariantProductComponent } from './Variant-Product/Variant-Product.component';
+import { variantproductComponent } from './variant-product/variant-product.component';
 
 @NgModule({
   declarations: [
@@ -32,9 +32,9 @@ import { VariantProductComponent } from './Variant-Product/Variant-Product.compo
     LoginComponent,
     AdmindashboardComponent,
     ProductComponent,
-    TestComponent,
+    ArborescenceComponent,
     DragDropComponent,
-    VariantProductComponent,
+    variantproductComponent,
   ],
 
   imports: [

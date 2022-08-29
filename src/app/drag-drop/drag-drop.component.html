@@ -6,7 +6,8 @@
     [draggableNodes]="true"
     [droppableNodes]="true"
     draggableScope="self"
-    droppableScope="self"></p-tree>
+    droppableScope="self"
+    (onNodeDrop)="NodeDropList($event)"></p-tree>
 </div>
 <div>
   <div>
@@ -31,35 +32,35 @@
 <p>Node reordering between multiple tree based on scope constraints.</p>
 <div class="grid p-fluid">
   <div class="col-12 md:col-4">
-    <h3>Files</h3>
-    <p>Can transfer to List 2.</p>
+    <h3>Files 2</h3>
+    <p>Can transfer to Files 4.</p>
     <p-tree
       [value]="files2"
       dropCopyNode="true"
       [draggableNodes]="true"
       [droppableNodes]="true"
       droppableScope="files"
-      draggableScope="server2">
-      <!-- <ng-template let-node pTemplate type="default">
-        <span (onDrop)="onNodeDrop($event, node)"></span> </ng-template> -->
+      draggableScope="server2"
+      (onNodeDrop)="NodeDropList1($event)">
     </p-tree>
   </div>
 
   <div class="col-12 md:col-4">
-    <h3>Liste 1</h3>
-    <p>Can transfer to Files.</p>
+    <h3>Files 3</h3>
+    <p>Can transfer to Files 2.</p>
     <p-tree
       [value]="files3"
       dropCopyNode="true"
       [draggableNodes]="true"
       [droppableNodes]="true"
       droppableScope="server1"
-      draggableScope="files"></p-tree>
+      draggableScope="files"
+      (onNodeDrop)="NodeDropList2($event)"></p-tree>
   </div>
 
   <div class="col-12 md:col-4">
-    <h3>Liste 2</h3>
-    <p>Can transfer to List 1.</p>
+    <h3>Files 2</h3>
+    <p>Can transfer to Files 1.</p>
     <p-tree
       [value]="files4"
       dropCopyNode="true"
@@ -67,7 +68,7 @@
       [droppableNodes]="true"
       droppableScope="server2"
       draggableScope="server1"
-      (onNodeDrop)="NodeDrop($event)"></p-tree>
+      (onNodeDrop)="NodeDropfile2($event)"></p-tree>
   </div>
 </div>
 
@@ -80,31 +81,32 @@
   [modal]="false"
   [resizable]="true"
   position="center"
-  [contentStyle]="{ height: '350px', width: '30vw' }"
+  [contentStyle]="{ height: '450px', width: '30vw' }"
   styleClass="p-fluid">
   <div class="left">
-    <h3>Files</h3>
+    <h3>Files 2</h3>
     <p>Can transfer to Server 2.</p>
     <p-tree
       [value]="files2"
+      dropCopyNode="true"
       [draggableNodes]="true"
       [droppableNodes]="true"
-      [droppableNodes]="true"
       droppableScope="files"
-      draggableScope="server1"
       draggableScope="server2"
-      scrollHeight="flex"></p-tree>
+      (onNodeDrop)="NodeDropList1($event)">
+    </p-tree>
   </div>
   <div class="right">
-    <h3>Server 1</h3>
+    <h3>Files 3</h3>
     <p>Can transfer to Files.</p>
     <p-tree
       [value]="files3"
+      dropCopyNode="true"
       [draggableNodes]="true"
       [droppableNodes]="true"
       droppableScope="server1"
       draggableScope="files"
-      scrollHeight="flex"></p-tree>
+      (onNodeDrop)="NodeDropList2($event)"></p-tree>
   </div>
   <ng-template pTemplate="footer">
     <button
@@ -122,34 +124,36 @@
   [(visible)]="dialogVisible2"
   [style]="{ border: 'solid rgb(175, 170, 170) 1px' }"
   [baseZIndex]="10000"
-  [maximizable]="true"
+  [maximizable]="false"
   [modal]="false"
-  [contentStyle]="{ height: '350px', width: '30vw' }"
+  [contentStyle]="{ height: '450px', width: '30vw' }"
   styleClass="p-fluid"
   [resizable]="true"
   position="right">
   <div class="left">
-    <h3>Files</h3>
+    <h3>Files 2</h3>
     <p>Can transfer to Server 2.</p>
     <p-tree
       [value]="files2"
+      dropCopyNode="true"
       [draggableNodes]="true"
       [droppableNodes]="true"
-      [droppableNodes]="true"
       droppableScope="files"
-      draggableScope="server1"
       draggableScope="server2"
-      scrollHeight="flex"></p-tree>
+      (onNodeDrop)="NodeDropList1($event)">
+    </p-tree>
   </div>
   <div class="right">
-    <h3>Server 2</h3>
+    <h3>File 4</h3>
     <p>Can transfer to Server 1.</p>
     <p-tree
       [value]="files4"
+      dropCopyNode="true"
       [draggableNodes]="true"
       [droppableNodes]="true"
       droppableScope="server2"
-      draggableScope="files"></p-tree>
+      draggableScope="server1"
+      (onNodeDrop)="NodeDropfile2($event)"></p-tree>
   </div>
   <ng-template pTemplate="footer">
     <button

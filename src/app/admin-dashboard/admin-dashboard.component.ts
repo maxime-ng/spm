@@ -36,12 +36,19 @@ export class AdmindashboardComponent implements OnInit {
   language = 'en';
   
 
+  /**
+   * 
+   * @param translate 
+   */
   constructor(private translate: TranslateService) {
     translate.setDefaultLang(this.language);
   }
 
   ngOnInit(): void {}
 
+  /**
+   * translator
+   */
   changelanguage(): void{
     if(this.language === 'en'){
       this.language = 'fr';
@@ -49,6 +56,5 @@ export class AdmindashboardComponent implements OnInit {
       this.language = 'en';
     }
     this.translate.use(this.language);
-
   }
 }

@@ -16,19 +16,11 @@ export class ProductService {
   private apiURL = environment.urlapi;
 
   getAll(): Observable<any> {
-    // return this.httpClient.get(this.apiURL + "products", {
-    //   headers: new HttpHeaders({ "Origin": "*" }),
-    // });
     let headers = new HttpHeaders();
-    // headers = headers.set("Content-Type", "application/json");
-    // headers.set("Origin", "*");
     headers = headers.set("Access-Control-Allow-Origin", "*");
-
     return this.httpClient.get<any>(
       this.apiURL + "products/selectall"
-      // , { headers: headers }
     );
-    // .pipe(catchError(this.errorHandler));
   }
 
   save(name: String, productidentifier: String): Observable<any>{
