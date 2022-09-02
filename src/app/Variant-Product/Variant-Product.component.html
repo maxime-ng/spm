@@ -148,6 +148,7 @@
               icon="pi pi-window-minimize"
               title="Manage Products Variants"
               class="p-button-rounded p-button-help"
+              (click)="showDialog()"
               [style]="{ margin: '5px' }"></button>
           </td>
         </tr>
@@ -188,4 +189,212 @@
       </ng-template>
     </p-table>
   </p-panel>
+
+  <p-dialog
+    header="Manage Product Variants"
+    [(visible)]="dialogVisible"
+    [style]="{ border: 'solid rgb(175, 170, 170) 1px' }"
+    [baseZIndex]="10000"
+    [maximizable]="true"
+    [modal]="true"
+    [contentStyle]="{ height: '80%', width: '100%' }"
+    styleClass="p-fluid"
+    [resizable]="false"
+    position="center">
+    <div class="toolbars">
+      <p-toolbar styleClass="p-mb-4">
+        <ng-template pTemplate="left">
+          <button
+            pButton
+            pRipple
+            [label]="translate.instant('tableproduct.BtnNew')"
+            title="New"
+            icon="pi pi-plus"
+            class="p-button-success p-mr-2"></button>
+          <button
+            pButton
+            pRipple
+            [label]="translate.instant('tableproduct.BtnDelete')"
+            icon="pi pi-trash"
+            title="Delete"
+            class="p-button-danger"
+            [style]="{ margin: '5px' }"></button>
+        </ng-template>
+
+        <ng-template pTemplate="right">
+          <p-fileUpload
+            mode="basic"
+            accept="image/*"
+            [maxFileSize]="1000000"
+            [chooseLabel]="translate.instant('tableproduct.BtnImport')"
+            [style]="{ margin: '5px' }"></p-fileUpload>
+          <button
+            pButton
+            pRipple
+            [label]="translate.instant('tableproduct.BtnExport')"
+            icon="pi pi-upload"
+            class="p-button-help"></button>
+        </ng-template>
+      </p-toolbar>
+    </div>
+    <p-panel>
+      <p-table
+        #dt
+        id="dt"
+        [value]="products"
+        [paginator]="true"
+        [rows]="10"
+        [responsive]="true"
+        responsiveLayout="scroll"
+        [style]="{ 'font-size': '14px' }"
+        [columns]="cols"
+        dataKey="id"
+        [showCurrentPageReport]="true"
+        selectionMode="multiple"
+        [rowsPerPageOptions]="[10, 30, 50]">
+        <ng-template pTemplate="caption" let-columns>
+          <div style="text-align: left">
+            <button
+              pButton
+              [label]="translate.instant('tableproduct.BtnClear')"
+              class="p-button-outlined"
+              icon="pi pi-filter-slash"
+              title="Delete Filters"
+              (click)="clear(dt)"
+              [style]="{ margin: '5px' }"></button>
+            <span class="p-input-icon-left ml-auto" [style]="{ margin: '5px' }">
+              <i class="pi pi-search"></i>
+              <input
+                pInputText
+                type="text"
+                (input)="dt.filterGlobal(element, 'contains')"
+                placeholder="Search..." />
+            </span>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <!-- <th style="width: 3rem">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th> -->
+            <th style="width: 3rem"></th>
+            <th pSortableColumn="{{ col.field }}" *ngFor="let col of columns">
+              {{ col.header }}
+              <p-columnFilter type="text" field="{{ col.field }}" display="menu"></p-columnFilter>
+              <p-sortIcon field="{{ col.field }}"></p-sortIcon>
+            </th>
+            <!-- style="width: 40rem" indique la taille de la colonne des actions(consult, delete, update...)          -->
+            <th style="width: 40rem"></th>
+          </tr>
+        </ng-template>
+        <ng-template
+          pTemplate="body"
+          let-product
+          let-expanded="expanded"
+          let-columns="columns"
+          let-rowIndex="rowIndex">
+          <tr class="some-class" [pSelectableRow]="product" [pSelectableRowIndex]="rowIndex">
+            <!-- <td>
+            <p-tableCheckbox [value]="product"></p-tableCheckbox>
+          </td> -->
+            <td>
+              <button
+                type="button"
+                pButton
+                pRipple
+                [pRowToggler]="product"
+                class="p-button-text p-button-rounded p-button-plain"
+                [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+            </td>
+            <td *ngFor="let col of columns">
+              {{ product[col.field] }}
+            </td>
+            <td>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-eye"
+                title="Consult"
+                class="p-button-rounded p-button-secondary"
+                [style]="{ margin: '5px' }"></button>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-pencil"
+                title="Edit"
+                class="p-button-rounded p-button-warning p-mr-2"
+                [style]="{ margin: '5px' }"></button>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-trash"
+                title="Delete"
+                class="p-button-rounded p-button-danger"
+                [style]="{ margin: '5px' }"></button>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-copy"
+                class="p-button-rounded p-button-info"
+                title="Duplicate"
+                [style]="{ margin: '5px' }"></button>
+
+              <button
+                pButton
+                pRipple
+                icon="pi pi-window-minimize"
+                title="Manage Products Variants"
+                class="p-button-rounded p-button-help"
+                (click)="showDialog()"
+                [style]="{ margin: '5px' }"></button>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="rowexpansion" let-product let-expanded="expanded">
+          <tr>
+            <td colspan="4">
+              <div class="p-p-3">
+                <p-table
+                  [value]="product.ProductVariant"
+                  dataKey="id"
+                  [style]="{ 'font-size': '14px' }"
+                  styleClass="p-datatable-gridlines"
+                  [style]="{ 'margin-left': '90px' }">
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th pSortableColumn="id" style="background-color: rgb(180, 240, 220)">
+                        IdProductVariant <p-sortIcon field="price"></p-sortIcon>
+                      </th>
+                      <th pSortableColumn="name" style="background-color: rgb(183, 248, 226)">
+                        NameProductVariant <p-sortIcon field="name"></p-sortIcon>
+                      </th>
+                      <th style="width: 5rem" style="background-color: rgb(183, 248, 226)"></th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-ProductVariant>
+                    <tr>
+                      <td>{{ ProductVariant.id }}</td>
+                      <td>{{ ProductVariant.name }}</td>
+                      <td><p-button type="button" icon="pi pi-pencil" title="Edit"></p-button></td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-panel>
+    <ng-template pTemplate="footer">
+      <button
+        type="button"
+        pButton
+        icon="pi pi-check"
+        (click)="dialogVisible = false"
+        label="Ok"
+        class="p-button-text"></button>
+    </ng-template>
+  </p-dialog>
 </html>

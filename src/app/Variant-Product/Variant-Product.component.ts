@@ -44,6 +44,7 @@ export class variantproductComponent implements OnInit {
     productidentifier: '',
     name: ''
   };
+  dialogVisible: boolean = false;
 
 
   /**
@@ -67,6 +68,10 @@ export class variantproductComponent implements OnInit {
  */
 clear(table: Table) {
   table.clear();
+}
+
+showDialog() {
+  this.dialogVisible = true;
 }
 
 }
